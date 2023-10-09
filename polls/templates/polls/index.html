@@ -1,0 +1,527 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <title>We are Here to serve you better</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Roboto, Arial, sans-serif;
+        }
+
+
+
+        body {
+            background-color: #2874f0;
+            color: white;
+        }
+
+        header {
+            height: 40px;
+            background-color: #2874f0;
+            padding: 5px 5px 5px 5px;
+        }
+
+        .nav ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav ul li {
+            margin-right: 10px;
+        }
+
+        .nav ul li:first-child {
+            margin-right: auto;
+            margin-left: 10px;
+        }
+
+        .nav ul li img {
+            width: 100px;
+            height: 40px;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            .nav ul li img {
+                width: 80px;
+                height: 32px;
+            }
+
+            .nav ul li:first-child {
+                margin-left: 5px;
+            }
+
+            .nav ul li {
+                margin-right: 5px;
+            }
+        }
+
+        /* Default styles */
+        .search-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .search-input {
+            width: 200px;
+            height: 30px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .search-icon:before {
+            font-size: 16px;
+        }
+
+        .cart-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            color: white;
+        }
+
+        .cart-items {
+            position: absolute;
+            top: 0px;
+            right: 2px;
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .search-input {
+                width: 150px;
+            }
+
+            .search-icon:before {
+                font-size: 14px;
+            }
+
+            .cart-icon {
+                font-size: 20px;
+            }
+
+            .cart-items {
+                font-size: 10px;
+                padding: 1px 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-input {
+                width: 100%;
+            }
+
+            .search-icon {
+                right: 5px;
+            }
+
+            .cart-icon {
+                font-size: 18px;
+            }
+
+            .cart-items {
+                font-size: 10px;
+                padding: 1px 4px;
+                top: 0;
+                right: 2px;
+            }
+        }
+
+
+
+        .hcover {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2874f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+
+
+        .hcover li {
+            list-style: none;
+            margin: 0 10px;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .hcover {
+                font-size: 10px;
+                display: flex;
+            }
+
+            .hcover li {
+                margin: 5px 10px;
+            }
+        }
+
+
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background-color: #2874f0;
+        }
+
+        .deal {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .deal p {
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        #timer {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .deal a {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: white;
+            color: red;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            letter-spacing: 0.2px;
+            font-weight: 600;
+        }
+
+        a:hover {
+            cursor: pointer;
+            background-color: #2cef91;
+        }
+
+
+        /* Media query for responsiveness */
+        @media (max-width: 600px) {
+            .timer {
+                height: auto;
+                padding: 20px;
+            }
+
+            .deal {
+                flex-direction: column;
+            }
+
+            a {
+                margin-top: 10px;
+            }
+        }
+
+        .hcover li:hover {
+            border: 2px solid white;
+            cursor: pointer;
+        }
+
+        .product-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 65px;
+            background-color: white;
+        }
+
+        .product-table table td {
+            padding: 10px;
+            text-align: center;
+            border: 6px solid #2874f0;
+        }
+
+
+        .prstyle img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .prstyle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .prname {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .prname {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                color: black;
+                display: inline-block;
+                vertical-align: middle;
+                max-width: 100%;
+            }
+        }
+
+        .oldprice {
+
+            color: black;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+
+        .newprice {
+            font-size: 20px;
+            font-weight: bold;
+            color: #388e3c;
+            margin-bottom: -5px;
+        }
+
+        .prstyle a {
+            background: #0084ff;
+            margin-top: 10px;
+            color: black;
+            padding: 10px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            text-transform: inherit;
+            box-shadow: none;
+            text-decoration: none;
+            color: white;
+            letter-spacing: 0.2px;
+        }
+
+        table {
+            table-layout: fixed;
+        }
+
+        .product-table table td:first-child img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+
+        .product-table table td:not(:first-child) img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 767px) {
+            .prname {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 12px;
+                margin-top: 15px;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .prname {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        @media screen and (max-width: 225px) {
+            .product-table table td {
+                width: 100%;
+                margin-bottom: 60px;
+                display: block;
+                white-space: normal;
+                vertical-align: top;
+            }
+        }
+
+        footer {
+            background-color: #fbfbfb;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: black;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box span {
+            margin: 0 10px;
+            font-weight: 900;
+        }
+
+        .box span:last-child {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #out_of_stock {
+            background-color: #D3D3D3;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <ul>
+                <li><img src="{% static 'polls/alogo.png' %}" alt=""></li>
+                <li>
+                    <div class="search-wrapper">
+                        <input type="search" class="search-input" placeholder="Search for products">
+                        <i class="fas fa-search search-icon"></i>
+                <li></li>
+                </div>
+                </li>
+                <li>
+                    <i class="fas fa-cart-arrow-down cart-icon"></i>
+                    <span class="cart-items">1</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hcover">
+        <li>Today's deals</li>
+        <li>Electronics</li>
+        <li>Mobile</li>
+        <li>Sell</li>
+    </div>
+
+    <img src="{% static 'polls/add.jpg' %}" style="height: auto;" width="100%" alt="">
+
+    <div class="cover">
+        <img src="{% static 'polls/img1.jpg' %}" style="width: 100%;" height="auto" alt="">
+    </div>
+    <div class="cover">
+        <img src="{% static 'polls/kotak.jpg' %}" style="width: 100%; margin-top: -4px;" height="auto" alt="">
+    </div>
+
+    <div class="timer">
+        <div class="deal">
+            <p>Deal Of The Day</p>
+            <span id="timer">00:00</span>
+            <a href="#">View All</a>
+        </div>
+    </div>
+    <div class="product-table">
+        <table>
+            <tbody>
+                {% for product in products %}
+                {% if forloop.counter0|divisibleby:2 %}
+                <tr>
+                    {% endif %}
+                    <td>
+                        <div class="prstyle">
+                            <img src="{{ product.pr_img1.url }}" alt="">
+                            <p class="prname">
+                                {{ product.product_name }}
+                            </p>
+                            <div class="oldprice">
+                                <span style="text-decoration: line-through;">₹{{ product.old_price }}</span>
+                                <span class="out_of_stock"
+                                    style="color: #388e3c; font-size: 14px;">{{product.off}}</span>
+                            </div>
+                            <div class="prime">
+                                <img src="{% static 'polls/prime.png' %}" height="25px" weight="77px" alt="">
+                            </div>
+                            <p class="newprice">
+                                Now ₹{{ product.new_price }}
+                            </p>
+                            {% if product.out_of_stock %}
+                            <a id="out_of_stock" onclick="popup()">Out of Stock</a>
+                            {% else %}
+
+                            <a href="/polls/product/{{product.id}}">Add To Cart</a>
+                            {% endif %}
+                        </div>
+
+    </div>
+    </td>
+    {% if forloop.counter|divisibleby:2 or forloop.last %}
+    </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function popup() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Out of Stock',
+                text: 'Sorry This product out of Stock!',
+            })
+        }
+    </script>
+
+
+    <footer>
+        <div class="box">
+            <span>Terms & Conditions</span>
+            <span>+</span>
+        </div>
+    </footer>
+    <script src="{% static 'polls/main.js' %}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</body>
+
+</html>

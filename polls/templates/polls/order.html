@@ -1,0 +1,737 @@
+{% extends 'polls/basic.html' %}
+{% block title %}Order Summery{% endblock %}
+
+{% block body %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: Roboto, Arial, sans-serif;
+    }
+
+    body {
+        background-color: #f8f8f8;
+        color: white;
+    }
+
+    /* Set the height and background color of the header */
+    header {
+        height: 40px;
+        background-color: #2874f0;
+        padding: 5px 5px 5px 5px;
+    }
+
+    /* Center the navigation list horizontally and remove list styles */
+    .nav ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        /* Center the list horizontally */
+        align-items: center;
+        height: 100%;
+    }
+
+    /* Style the list items */
+    .nav ul li {
+        margin-right: 10px;
+    }
+
+    /* Set the image width and height */
+    .nav ul li:first-child {
+        margin-right: auto;
+        margin-left: 10px;
+    }
+
+    .nav ul li img {
+        width: 100px;
+        height: 40px;
+        margin-top: 10px;
+    }
+
+    /* Responsive styles */
+    @media only screen and (max-width: 600px) {
+
+        /* Reduce the logo size */
+        .nav ul li img {
+            width: 80px;
+            height: 32px;
+        }
+
+        /* Adjust the margins */
+        .nav ul li:first-child {
+            margin-left: 5px;
+        }
+
+        .nav ul li {
+            margin-right: 5px;
+        }
+    }
+
+    /* Default styles */
+    .search-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .search-input {
+        width: 200px;
+        height: 30px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+        display: none;
+    }
+
+    .search-icon {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #888;
+    }
+
+    .search-icon:before {
+        font-size: 16px;
+    }
+
+    .cart-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .cart-icon {
+        display: none;
+        font-size: 24px;
+        color: white;
+    }
+
+    .cart-items {
+        position: absolute;
+        top: 0px;
+        right: 2px;
+        display: none;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .search-input {
+            width: 150px;
+        }
+
+        .search-icon:before {
+            font-size: 14px;
+        }
+
+        .cart-icon {
+            font-size: 20px;
+        }
+
+        .cart-items {
+            font-size: 10px;
+            padding: 1px 4px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .search-input {
+            width: 100%;
+        }
+
+        .search-icon {
+            right: 5px;
+        }
+
+        .cart-icon {
+            font-size: 18px;
+        }
+
+        .cart-items {
+            font-size: 10px;
+            padding: 1px 4px;
+            top: 0;
+            right: 2px;
+        }
+    }
+
+    .hcover {
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2874f0;
+        padding: 10px;
+        font-size: 13px;
+        font-weight: 900;
+
+    }
+
+
+
+    .hcover li {
+
+        list-style: none;
+        margin: 0 10px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+        .hcover {
+            font-size: 10px;
+            display: flex;
+        }
+
+        .hcover li {
+            margin: 5px 10px;
+        }
+    }
+
+
+    .step {
+        margin-top: 30px;
+        position: fixed;
+        color: black;
+        background-color: #f5f5f5;
+        padding: 4px;
+        border-radius: 8px;
+        box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
+        font-size: 12px;
+    }
+
+    .step ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    .step.done {
+        position: relative;
+    }
+
+    .step.done::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        /* Change the color as desired */
+        z-index: -1;
+        transform: translateY(-50%);
+        /* Adjust the position of the line */
+    }
+
+    .step.done ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .step.done li {
+        position: relative;
+        flex: 1;
+        text-align: center;
+    }
+
+    .step.done li::before {
+        content: "";
+        position: absolute;
+        top: -23px;
+        left: calc(50% - 4px);
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-image: url(https://m.media-Flipkart.com/images/G/31/x-locale/common/icons/successIcon.png);
+        background-position: center;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background-color: #fff;
+        border: 2px solid #007185;
+
+    }
+
+    .step.done .last::before {
+        content: "";
+        position: absolute;
+        top: -29px;
+        left: calc(50% - 10px);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-position: center;
+        background-size: 60%;
+        background-repeat: no-repeat;
+        background: radial-gradient(circle, #007185 50%, #fff 52%);
+        border: 2px solid #000;
+    }
+
+
+    .step.done li::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        background-color: #007185;
+        top: -17px;
+        width: 74%;
+        left: -34%;
+    }
+
+    .a-container {
+        color: black;
+
+    }
+
+    .onetime {
+        border-color: rgb(251, 100, 27);
+        padding: 1rem;
+        border-style: solid;
+        border-radius: .8rem;
+        border-width: .2rem;
+        border-left-width: 1.2rem;
+
+    }
+
+    /* Style for the container */
+    .a-section {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 16px;
+    }
+
+    /* Style for the order summary box */
+    #order-summary-box {
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    /* Style for the shipping address */
+    #address {
+        font-weight: bold;
+    }
+
+    .a-section {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .ordersummery table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .ordersummery td,
+    .ordersummery th {
+        font-size: 15px;
+        padding: 8px;
+        text-overflow: ellipsis;
+
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+
+    .ordersummery th {
+        background-color: #f2f2f2;
+    }
+
+    @media (max-width: 600px) {
+        .a-section {
+            overflow-x: scroll;
+        }
+
+        .ordersummery td,
+        .ordersummery th {
+            text-align: left;
+            font-size: 15px;
+            padding: 4px;
+        }
+    }
+
+
+    .a-box {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 2px;
+        margin-bottom: -16px;
+    }
+
+    .a-declarative {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .a-declarative .a-size-base {
+        font-size: 14px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .a-section.padding-left-base {
+        padding-left: 20px;
+    }
+
+    .a-unordered-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .a-unordered-list .a-list-item {
+        font-size: 14px;
+        color: #777;
+        padding: 4px 0;
+    }
+
+    .a-unordered-list .a-list-item:before {
+        content: "•";
+        margin-right: 4px;
+    }
+
+    .a-color-price {
+        color: #B12704 !important;
+    }
+
+    .a-section.padding-left-base {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .a-list-item {
+        font-size: 14px;
+        font-weight: bold;
+        color: #007185;
+        margin-bottom: 10px;
+    }
+
+    .inputforcode {
+        display: flex;
+        align-items: center;
+    }
+
+    .inputforcode input[type="text"] {
+        width: 152px;
+        height: 31px;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+    }
+
+    .inputforcode button.btn {
+        height: 46px;
+        padding: 0px 20px;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #007185;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+        width: 80px;
+    }
+
+    /* Hover styles */
+    .inputforcode button.btn:hover {
+        background-color: #005669;
+    }
+
+    /* Focus styles */
+    .inputforcode input[type="text"]:focus {
+        outline: none;
+        border-color: #007185;
+        box-shadow: 0 0 0 2px rgba(0, 113, 133, 0.2);
+    }
+
+    footer {
+        position: fixed;
+        overflow: hidden;
+        background-color: #f8f8f8;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        z-index: 99;
+        border-top: 1px solid #BBB;
+    }
+
+    .box {
+        display: flex;
+        height: 50px;
+        justify-content: center;
+
+    }
+
+    #joker {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 15px;
+        letter-spacing: 1.2px;
+        font-weight: 900;
+        text-align: center;
+        text-decoration: none;
+        background: rgb(251, 100, 27);
+        color: rgb(255, 255, 255);
+        border: none;
+        width: 100%;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+
+    #joker:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(0, 113, 133, 0.2);
+    }
+
+    .information p {
+        color: black;
+        font-size: 12px;
+        margin-bottom: 10px;
+        padding: 5px;
+        font-family: sans-serif, serif, monospace, ;
+
+    }
+
+    .blackfooter {
+        bottom: 0;
+        left: 0;
+        background-color: #000;
+        color: #fff;
+        padding: 20px;
+    }
+
+    .blackfooter ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .blackfooter ul li {
+        font-size: 12px;
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .blackfooter .copyrigth {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 60px;
+    }
+</style>
+
+
+<div class="step done">
+    <ul>
+        <li>Addres</li>
+        <li>Delivery</li>
+        <li>Payment</li>
+        <li class="last">Placeorder</li>
+    </ul>
+</div>
+
+<div class="a-container">
+    <h1 class="a-size-large a-spacing-base a-spacing-top-base" style="    margin-top: 15px;
+    margin-left: 15px;
+    font-size: 27px;">
+        Order now
+    </h1>
+
+    <!-- Important Message Box START -->
+
+    <div id="purchase-level-messages" class="a-section a-spacing-large">
+        <div class="a-box a-alert a-alert-warning a-spacing-large" aria-live="polite" aria-atomic="true">
+            <div class="a-box-inner a-alert-container">
+                <div class="a-alert-content">
+                    <div class="onetime">
+                        One-time password required at time of delivery
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="a-section a-spacing-large">
+        <div id="order-summary-box" class="a-row celwidget">
+            Shipping to: <span id="address"></span>
+        </div>
+        <div class="ordersummery">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>items</td>
+                        <td>{{products.new_price}}</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery</td>
+                        <td>₹0</td>
+                    </tr>
+                    <tr>
+                        <td><span>Total:</span></td>
+                        <td>{{products.new_price}}</td>
+                    </tr>
+                    <tr>
+                        <td>Promotion Applied:</td>
+                        <td>-{{products.off}}</td>
+                    </tr>
+
+                    <tr style="font-weight: 900; font-size: 15px;">
+                        <td>Order Total</td>
+                        <td>₹{{products.new_price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="a-box">
+        <div class="a-box-inner a-padding-base">
+            <div class="a-section">
+                <span class="a-declarative">
+                    <div class="a-box-inner">
+                        <div class="a-row aok-nowrap">
+                            <span class="a-size-base a-color-price a-text-bold">
+                                <span class="break-word">Your Savings:</span>
+                            </span>
+                            <span class="a-size-base a-color-price a-text-bold">
+                                <span class="break-word">UPTO
+                                    ₹96%</span>
+                            </span>
+                        </div>
+
+                        <div class="a-section padding-left-base">
+                            <ul class="a-unordered-list a-vertical">
+
+                                <li><span class="a-list-item a-size-small">
+                                        FREE Delivery
+                                    </span></li>
+
+                                <li><span class="a-list-item a-size-small">
+                                        Item discount
+                                    </span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <div class="a-box">
+        <div class="a-box-inner a-padding-base">
+            <div class="a-section">
+                <span class="a-declarative">
+                    <div class="a-box-inner">
+                        <div class="a-row aok-nowrap">
+                            <span class="a-size-base a-color-price a-text-bold">
+                                <span class="break-word">Pay With</span>
+                            </span>
+                        </div>
+
+                        <div class="a-section padding-left-base">
+                            <span class="a-list-item a-size-small">
+                                Pay with Add Debit/Credit/ATM Card
+                            </span>
+                        </div>
+                        <div class="a-section padding-left-base">
+                            <span class="a-list-item a-size-small" style="color:#007185">
+                                Add Gift Card or Promo Code
+                            </span>
+                            <div class="inputforcode">
+                                <input type="text" placeholder="Enter Code">
+                                <button class="btn">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="order-summary-box" class="a-row celwidget" style="color: black;">
+    Deliver To <span id="addressfordelvery"></span>
+
+
+    <div class="name">
+        <h2 class="name1"></h2>
+    </div>
+</div>
+
+
+<div class="information" style="margin-bottom: 20%;">
+    <p>
+        By placing your order, you agree to Flipkart's privacy notice and <a href=""
+            style="color: #005669;text-decoration: none;">conditions of
+            use.</a><br><br>
+
+        When your order is placed, we'll send you an e-mail message acknowledging receipt of your order. If you choose
+        to pay
+        using an electronic payment method (credit card or debit card), you will be directed to your bank's website to
+        complete
+        your payment. Your contract to purchase an item will not be complete until we receive your electronic payment
+        and
+        dispatch your item. If you choose to pay using Pay on Delivery (POD), you can pay using cash/card/net banking
+        when you
+        receive your item.<br><br>
+        See Flipkart.in's <a href="" style="color: #005669;text-decoration: none;">Return Policy.</a>
+        <br><br>
+        Go to the Flipkart.in homepage without completing your order.
+    </p>
+</div>
+
+<footer>
+    <div class="box">
+        <button onclick="window.location.href='/polls/payselect/{{products.id}}'" id="joker">Place Your Order</button>
+    </div>
+</footer>
+
+
+
+<script>
+    // Retrieve the form data from localStorage
+    var formDataJson = localStorage.getItem('addressFormData');
+
+    if (formDataJson) {
+
+        var formData = JSON.parse(formDataJson);
+
+        var fullNameModified = formData.fullName;
+        var mobileModified = formData.mobile;
+        var pinCodeModified = formData.pinCode;
+        var addressLine1Modified = formData.addressLine1;
+        var addressLine2Modified = formData.addressLine2;
+        var landmarkModified = formData.landmark;
+        var cityModified = formData.city;
+        var stateModified = formData.state;
+        var countryModified = formData.country;
+
+        var addressString = fullNameModified + ', ' + addressLine1Modified + ', ' + addressLine2Modified + ', ' + landmarkModified + ', ' + cityModified + ', ' + stateModified + ', ' + countryModified;
+
+        document.getElementById('addressfordelvery').textContent = addressString;
+    }
+</script>
+
+
+
+{% endblock %}

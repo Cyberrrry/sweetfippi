@@ -1,0 +1,415 @@
+{% extends 'polls/basic.html' %}
+{% block title %} Payment Method {% endblock %}
+{% block body %}
+
+{% load static %}
+
+<style>
+    * {
+        margin: 0;
+        overflow-x: hidden;
+        padding: 0;
+        font-family: Roboto, Arial, sans-serif;
+    }
+
+    /* Set the height and background color of the header */
+    header {
+        display: flex;
+        height: 40px;
+        background-color: #2874f0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Center the navigation list horizontally and remove list styles */
+    .nav ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        /* Center the list horizontally */
+        align-items: center;
+        height: 100%;
+    }
+
+    /* Style the list items */
+    .nav ul li {
+        margin-right: 10px;
+    }
+
+    /* Set the image width and height */
+    .nav ul li:first-child {
+        margin-right: auto;
+        margin-left: 10px;
+    }
+
+    .nav ul li img {
+        width: 100px;
+        height: 40px;
+    }
+
+    .form-check-input:focus {
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: none !important;
+    }
+
+    /* Responsive styles */
+    @media only screen and (max-width: 600px) {
+
+        /* Reduce the logo size */
+        .nav ul li img {
+            width: 80px;
+            height: 32px;
+        }
+
+        /* Adjust the margins */
+        .nav ul li:first-child {
+            margin-left: 5px;
+        }
+
+        .nav ul li {
+            margin-right: 5px;
+        }
+    }
+
+    /* Default styles */
+    .search-wrapper {
+        position: relative;
+        display: inline-block;
+        display: none;
+    }
+
+    .search-input {
+        width: 200px;
+        height: 30px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .search-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #888;
+    }
+
+    .search-icon:before {
+        font-size: 16px;
+    }
+
+    .cart-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .cart-icon {
+        display: none;
+        font-size: 24px;
+        color: white;
+    }
+
+    .cart-items {
+        position: absolute;
+        display: none;
+        top: 0px;
+        right: 2px;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .search-input {
+            width: 150px;
+        }
+
+        .search-icon:before {
+            font-size: 14px;
+        }
+
+        .cart-icon {
+            font-size: 20px;
+        }
+
+        .cart-items {
+            font-size: 10px;
+            padding: 1px 4px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .search-input {
+            width: 100%;
+        }
+
+        .search-icon {
+            right: 5px;
+        }
+
+        .cart-icon {
+            font-size: 18px;
+        }
+
+        .cart-items {
+            font-size: 10px;
+            padding: 1px 4px;
+            top: 0;
+            right: 2px;
+        }
+    }
+
+
+
+    .hcover {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2874f0;
+        padding: 10px;
+        font-size: 13px;
+        font-weight: 900;
+    }
+
+
+
+    .hcover li {
+        list-style: none;
+        margin: 0 10px;
+        color: white;
+
+    }
+
+    @media (max-width: 600px) {
+        .hcover {
+            font-size: 10px;
+            display: flex;
+        }
+
+        .hcover li {
+            margin: 5px 10px;
+            font-size: 12px;
+            margin: 5px 10px;
+            text-align: center;
+        }
+    }
+
+    .payinfo table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #2874f0;
+        color: white;
+    }
+
+    .payinfo th,
+    .payinfo td {
+        padding: 10px;
+        text-align: center;
+    }
+
+
+    .payinfo tr:last-child td {
+        border-bottom: none;
+    }
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2874f0;
+        padding: 20px;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+    }
+</style>
+
+
+<style>
+    #upilink {
+        color: white;
+        background: rgb(251, 100, 27);
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    ol {
+        padding-left: 1.5rem;
+        list-style-type: none;
+        /* Removes default numbers */
+        counter-reset: item;
+    }
+
+    /* Styling for each list item */
+    li {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        /* Slightly bigger font for better readability */
+        line-height: 1.5;
+        /* Spaced out line height */
+        position: relative;
+    }
+
+    /* Adds custom numbers using CSS counters */
+    li:before {
+        content: counter(item) ".";
+        /* Adding a dot after the number */
+        counter-increment: item;
+        position: absolute;
+        left: -2rem;
+        /* Positioning to the left of the list item text */
+        color: #007BFF;
+        /* Change this to a color that fits your site's theme */
+        font-weight: bold;
+    }
+
+    #Learn {
+        text-decoration: none;
+        color: darkblue;
+    }
+
+    .nav {
+        display: flex;
+        margin-top: 25px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mb-3 {
+        margin-left: 10px;
+        margin-bottom: 1rem !important;
+    }
+
+    .pay {
+        font-weight: 700;
+    }
+
+    .form-check-input[type=radio] {
+        border-radius: 50%;
+        border: 1px solid;
+    }
+</style>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+
+
+<div class="payinfo">
+    <table>
+        <tbody>
+            <tr>
+                <td>Paying to</td>
+                <td>Flikart!</td>
+            </tr>
+            <tr>
+                <td>TOTAL AMOUNT</td>
+                <td id="amount">₹{{products.new_price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="card shadow py-3">
+    <h3 class="card-header text-center">Select a payment method</h3>
+    <div class="card-body">
+
+        <label class="custom-control custom-radio mb-3 d-flex justify-content-between align-items-center" for="radio2">
+            <input class="form-check-input" type="radio" name="optradio" id="radio2" onclick="cselect()">
+            <span class="pay">Paytm</span>
+            <img id="paytm" src="{% static 'polls/paytm.png' %}" class="img-fluid" style="width: 25%; height: auto;">
+        </label>
+
+        <label class="custom-control custom-radio mb-3 d-flex justify-content-between align-items-center" for="radio3">
+            <input class="form-check-input" type="radio" name="optradio" id="radio3" onclick="cselect()">
+            <span class="pay">PhonePe</span>
+            <img id="gpay" src="{% static 'polls/phonepe.png' %}" class="img-fluid" style="width: 25%; height: auto;">
+        </label>
+
+        <label class="custom-control custom-radio mb-3 d-flex justify-content-between align-items-center" for="radio1">
+            <input class="form-check-input" type="radio" name="optradio" id="radio1" onclick="cselect()">
+            <span class="pay">Other UPI Apps</span>
+            <img src="{% static 'polls/upi1.png' %}" class="img-fluid" style="width: 25%; height: auto;">
+        </label>
+
+    </div>
+    <div class="card-footer d-flex justify-content-center">
+        <a class="btn btn-primary" id="upilink">Place your Order and Pay</a>
+    </div>
+</div>
+
+
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow">
+                <h5 class="card-header text-center text-black">UPI Payment Guidelines</h5>
+                <div class="card-body">
+                    <ol>
+                        <li>Ensure you have an active UPI account linked with your bank.</li>
+                        <li>Choose your preferred UPI application (e.g., Paytm, PhonePe, etc.) for payment.</li>
+                        <li>Click on the payment option when proceeding with the payment.</li>
+                        <li>Verify the amount and the recipient details before confirming the payment.</li>
+                        <li>In case of failed transactions, amount will be refunded back to the source account within
+                            5-7 working days. <a href="#" id="Learn">Learn More</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% for i in upi %}
+
+<script>
+    function cselect() {
+        r1 = document.getElementById('radio1');
+        r2 = document.getElementById('radio2');
+        r3 = document.getElementById('radio3');
+        upi = document.getElementById('upilink');
+        price = "{{products.new_price}}";
+        console.log(price)
+
+        let random = Math.floor(Math.random() * (1e15 - 1e14) + 1e14);
+
+        let randommc = Math.floor(Math.random() * (10000 - 1000) + 1000);
+
+        if (r1.checked == true) {
+            upi.href = `upi://pay?pa={{ i.upi }}&am=${price}&tn=paying_to_Flipkart!&pn=ServiceStation&tr=${random}&cu=INR`;
+        }
+
+        if (r2.checked == true) {
+            upi.href = `paytmmp://pay?pa={{ i.upi }}&am=${price}&tn=paying_to_Flipkart!&pn=ServiceStation&}&cu=INR&mc=5999`;
+        }
+
+        if (r3.checked == true) {
+            upi.href = `phonepe://pay?pa={{ i.upi }}&am=${price}&tn=paying_to_Flipkart!&pn=ServiceStation&tr=&cu=INR&mc=5499`;
+        }
+    }
+</script>
+{% endfor %}
+
+
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

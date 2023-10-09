@@ -1,0 +1,140 @@
+Invalid HTTP_HOST header: 'gb-back.info'. You may need to add 'gb-back.info' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gbbackin/virtualenv/bheem/3.9/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gbbackin/virtualenv/bheem/3.9/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/gbbackin/virtualenv/bheem/3.9/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gbbackin/virtualenv/bheem/3.9/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'gb-back.info'. You may need to add 'gb-back.info' to ALLOWED_HOSTS.
+Bad Request: /
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1665][70356] Child process with pid: 79504 was killed by signal: 15, core dumped: no
+[UID:1665][70356] Child process with pid: 477551 was killed by signal: 15, core dumped: no
+[UID:1665][1373948] Child process with pid: 3657221 was killed by signal: 15, core dumped: no
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 6, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][8364] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][178957] Child process with pid: 589001 was killed by signal: 15, core dumped: no
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 7, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1677903] Reached max children process limit: 6, extra: 2, current: 8, busy: 8, please increase LSAPI_CHILDREN.
+[UID:1665][1831801] Child process with pid: 2721120 was killed by signal: 15, core dumped: no
+[UID:1665][1831801] Child process with pid: 2728420 was killed by signal: 15, core dumped: no
+[UID:1665][1831801] Child process with pid: 2811958 was killed by signal: 15, core dumped: no
+[UID:1665][1831801] Child process with pid: 1972968 was killed by signal: 15, core dumped: no
+[UID:1665][1831801] Child process with pid: 2021981 was killed by signal: 15, core dumped: no
+[UID:1665][1831801] Child process with pid: 2800540 was killed by signal: 15, core dumped: no
+[UID:1665][3911949] Child process with pid: 2188663 was killed by signal: 15, core dumped: no
+[UID:1665][3911949] Child process with pid: 2311515 was killed by signal: 15, core dumped: no
+[UID:1665][3911949] Child process with pid: 2365895 was killed by signal: 15, core dumped: no
+[UID:1665][3911949] Child process with pid: 3533787 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/kumarsh0/kumar/passenger_wsgi.py", line 1, in <module>
+    from mysite.wsgi import application
+  File "/home/kumarsh0/kumar/mysite/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+Traceback (most recent call last):
+  File "/home/kumarsh0/kumar/passenger_wsgi.py", line 1, in <module>
+    from mysite.wsgi import application
+  File "/home/kumarsh0/kumar/mysite/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+[UID:3031][1630978] Child process with pid: 1631019 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/kumarsh0/kumar/passenger_wsgi.py", line 1, in <module>
+    from mysite.wsgi import application
+  File "/home/kumarsh0/kumar/mysite/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+[UID:3031][1630978] Child process with pid: 1631021 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/kumarsh0/kumar/passenger_wsgi.py", line 1, in <module>
+    from mysite.wsgi import application
+  File "/home/kumarsh0/kumar/mysite/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+Traceback (most recent call last):
+  File "/home/kumarsh0/kumar/passenger_wsgi.py", line 1, in <module>
+    from mysite.wsgi import application
+  File "/home/kumarsh0/kumar/mysite/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+[UID:3031][1636562] Child process with pid: 1636592 was killed by signal: 15, core dumped: no
+Traceback (most recent call last):
+  File "/home/kumarsh0/kumar/passenger_wsgi.py", line 1, in <module>
+    from mysite.wsgi import application
+  File "/home/kumarsh0/kumar/mysite/wsgi.py", line 12, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+[UID:3031][1636562] Child process with pid: 1636598 was killed by signal: 15, core dumped: no

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+
+    <link rel="stylesheet" href="https://example.com/icon-font.css">
+
+    <title>{% block title %} {% endblock %}</title>
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <ul>
+                <li><img src="{% static 'polls/alogo.png' %}" alt=""></li>
+                <li>
+                    <div class="search-wrapper">
+                        <input type="search" class="search-input" placeholder="Search for products">
+                        <i class="fas fa-search search-icon"></i>
+                <li></li>
+                </div>
+                </li>
+                <li>
+                    <i class="fas fa-cart-arrow-down cart-icon"></i>
+                    <span class="cart-items">1</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hcover">
+        <li>Today's deals</li>
+        <li>Electronics</li>
+        <li>Mobile</li>
+        <li>Sell</li>
+    </div>
+    {% block body %} {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4"></script>
+
+</body>
+
+</html>

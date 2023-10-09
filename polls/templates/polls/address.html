@@ -1,0 +1,541 @@
+{% extends 'polls/basic.html' %}
+{% block title %}Address{% endblock %}
+{% block body %}
+{% block css %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: Roboto, Arial, sans-serif;
+    }
+
+    body {
+        background-color: #f8f8f8;
+        color: white;
+    }
+
+    header {
+        height: 40px;
+        background-color: #2874f0;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .nav ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        /* Center the list horizontally */
+        align-items: center;
+        height: 100%;
+    }
+
+    /* Style the list items */
+    .nav ul li {
+        margin-right: 10px;
+    }
+
+    /* Set the image width and height */
+    .nav ul li:first-child {
+        margin-right: auto;
+        margin-left: 10px;
+    }
+
+    .nav ul li img {
+        width: 100px;
+        height: 40px;
+        margin-top: 10px;
+    }
+
+    /* Responsive styles */
+    @media only screen and (max-width: 600px) {
+
+        /* Reduce the logo size */
+        .nav ul li img {
+            width: 80px;
+            height: 32px;
+        }
+
+        /* Adjust the margins */
+        .nav ul li:first-child {
+            margin-left: 5px;
+        }
+
+        .nav ul li {
+            margin-right: 5px;
+        }
+    }
+
+    /* Default styles */
+    .search-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .search-input {
+        width: 200px;
+        height: 30px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+        display: none;
+    }
+
+    .search-icon {
+        display: none;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #888;
+    }
+
+    .search-icon:before {
+        font-size: 16px;
+    }
+
+    .cart-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .cart-icon {
+        display: none;
+        font-size: 24px;
+        color: white;
+    }
+
+    .cart-items {
+        position: absolute;
+        top: 0px;
+        right: 2px;
+        display: none;
+        padding: 2px 6px;
+        font-size: 12px;
+        font-weight: bold;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .search-input {
+            width: 150px;
+        }
+
+        .search-icon:before {
+            font-size: 14px;
+        }
+
+        .cart-icon {
+            font-size: 20px;
+        }
+
+        .cart-items {
+            font-size: 10px;
+            padding: 1px 4px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .search-input {
+            width: 100%;
+        }
+
+        .search-icon {
+            right: 5px;
+        }
+
+        .cart-icon {
+            font-size: 18px;
+        }
+
+        .cart-items {
+            font-size: 10px;
+            padding: 1px 4px;
+            top: 0;
+            right: 2px;
+        }
+    }
+
+    .hcover {
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #2874f0;
+        padding: 10px;
+        font-size: 13px;
+        font-weight: 900;
+
+    }
+
+
+
+    .hcover li {
+
+        list-style: none;
+        margin: 0 10px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+        .hcover {
+            font-size: 10px;
+            display: flex;
+        }
+
+        .hcover li {
+            margin: 5px 10px;
+        }
+    }
+
+    .address-form {
+        max-width: 500px;
+        margin: 10px;
+    }
+
+    .address-form label {
+        color: black;
+        display: block;
+        overflow-x: hidden;
+        white-space: nowrap;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-overflow: ellipsis;
+    }
+
+    .address-form input[type="text"],
+    .address-form select {
+        width: 95%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+    }
+
+    .address-form input[type="tel"],
+    .address-form select {
+        width: 102%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid lightgrey;
+    }
+
+
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        background: rgb(251, 100, 27);
+        color: rgb(255, 255, 255);
+        font-weight: 900;
+        letter-spacing: 1.2px;
+        text-align: center;
+        border-radius: 5px;
+        border: none;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 767px) {
+        .address-form {
+            max-width: 100%;
+            padding: 0 10px;
+        }
+    }
+
+    footer {
+        background-color: #2874f0;
+        padding: 20px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .box span {
+        margin: 0 10px;
+        font-weight: 900;
+    }
+
+    .box span:last-child {
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .radio-icon {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #000000;
+        text-align: center;
+        line-height: 30px;
+    }
+
+    .radio-icon i {
+        color: #333;
+    }
+
+    .a-checkbox {
+        display: inline-block;
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .a-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .a-checkbox .fa-square,
+    .a-checkbox .fa-square-check {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 16px;
+        width: 16px;
+    }
+
+    .a-checkbox .fa-square {
+        display: inline-block;
+        color: #ccc;
+    }
+
+    .a-checkbox .fa-square-check {
+        display: none;
+        color: #333;
+    }
+
+    .a-checkbox input:checked+.fa-square {
+        display: none;
+    }
+
+    .a-checkbox input:checked+.fa-square-check {
+        display: inline-block;
+    }
+
+    .a-checkbox .a-label {
+        padding-left: 30px;
+    }
+
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+        display: none;
+    }
+
+    .checkbox-container label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .checkbox-container .checkmark {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+        background-color: #fff;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .checkbox-container input[type="checkbox"]:checked+label .checkmark {
+        background-color: #000000;
+        border-color: #333;
+        position: relative;
+        border-radius: 50%;
+        /* to position the ::after element */
+    }
+
+    .checkbox-container input[type="checkbox"]:checked+label .checkmark::after {
+        content: "\2713";
+        /* Unicode check mark */
+        font-size: 20px;
+        /* adjust size as required */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        /* color of the check mark */
+    }
+
+    .checkbox-container .label-text {
+        font-size: 16px;
+        color: #333;
+    }
+
+    /* Optional: Add hover effect */
+    .checkbox-container label:hover .checkmark {
+        border-color: #999;
+        border-radius: 50%;
+    }
+
+    /* Optional: Add focus effect */
+    .checkbox-container input[type="checkbox"]:focus+label .checkmark {
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        outline: none;
+    }
+
+    .blackfooter {
+        bottom: 0;
+        left: 0;
+        background-color: #000;
+        color: #fff;
+        padding: 20px;
+    }
+
+    .blackfooter ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .blackfooter ul li {
+        font-size: 12px;
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .blackfooter .copyrigth {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 60px;
+    }
+</style>
+
+{% endblock %}
+
+<form class="address-form" id="myForm" action="/polls/order/{{products.id}}">
+    <label style="color: black; margin-bottom: 20px; font-size: larger;">Add A New Address</label>
+
+    <label for="full-name">Full Name</label>
+    <input type="text" id="full-name" placeholder="Enter Your Full-Name" name="full-name">
+
+    <label for="address-line1">Mobile</label>
+    <input type="text" placeholder="10-digit mobile number without prefixes" id="address-line1" name="address-line1">
+
+    <label for="address-line2">Pin Code</label>
+    <input type="text" id="pin" placeholder="6 Digits PIN-CODE" name="address-line2">
+
+    <label for="address-line2">Flat, House no., Building, Company</label>
+    <input type="text" id="flat" name="address-line2">
+
+    <label for="address-line2">Area, Street, Sector, Village</label>
+    <input type="text" id="Area" name="address-line2">
+
+    <label for="address-line2">Landmark</label>
+    <input type="text" id="Landmark" placeholder="e.g Near Apollo Hospital" name="address-line2">
+
+    <label for="city">Town/City</label>
+    <input type="text" id="city" name="city">
+
+    <label for="state">State</label>
+    <select id="state" name="state" onchange="changeState(this)">
+        <option value="">Select a state</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+    </select>
+
+    <div class="a-section" style="color: black; margin-bottom: 10px;">
+
+        <div
+            class="a-section a-spacing-none adddress-ui-widgets-form-field-label-container address-ui-widgets-desktop-form-label">
+
+        </div>
+
+
+        <div id="stop-mash-reappear"></div>
+    </div>
+
+    <div>
+        <button class="btn" type="submit"> Proceed to Pay</button>
+    </div>
+
+</form>
+
+
+
+
+<script>
+var form = document.getElementById('myForm');
+
+form.addEventListener('submit', function(event) {
+
+    event.preventDefault();
+
+    var formData = {
+        'full-name': document.getElementById('full-name').value,
+        'mobile': document.getElementById('address-line1').value,
+        'pin-code': document.getElementById('pin').value,
+        'address-line1': document.getElementById('flat').value,
+        'address-line2': document.getElementById('Area').value,
+        'landmark': document.getElementById('Landmark').value,
+        'city': document.getElementById('city').value,
+        'state': document.getElementById('state').value
+    };
+
+    var formDataJson = JSON.stringify(formData);
+
+    localStorage.setItem('addressFormData', formDataJson);
+
+    window.location.href = '/polls/order/{{products.id}}'; 
+});
+</script>
+
+
+
+
+
+{% endblock %}
